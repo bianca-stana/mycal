@@ -1,0 +1,39 @@
+﻿<Window x:Class="MyCal.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCal"
+        mc:Ignorable="d"
+        Title="About" Height="190" Width="400" Background="#FF1E1E1E" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Label HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" Foreground="White" Width="360" Height="30" VerticalContentAlignment="Center">
+            <TextBlock>
+                <Bold>Number of physical processors:</Bold> <TextBlock Text="{Binding PhysicalProcessorCount}"/>
+            </TextBlock>
+        </Label>
+
+        <Label HorizontalAlignment="Center" Margin="10,35,10,0" VerticalAlignment="Top" Foreground="White" Width="360" Height="30" VerticalContentAlignment="Center">
+            <TextBlock>
+                <Bold>Number of logical processors:</Bold> <TextBlock Text="{Binding LogicalProcessorCount}"/>
+            </TextBlock>
+        </Label>
+
+        <Label HorizontalAlignment="Center" Margin="10,85,10,0" VerticalAlignment="Top" Foreground="White" Width="360" Height="30" VerticalContentAlignment="Center">
+            <TextBlock>
+                Created by <Bold>Marina Bianca BUCUR</Bold>
+            </TextBlock>
+        </Label>
+
+        <Label HorizontalAlignment="Center" Margin="10,110,10,0" VerticalAlignment="Top" Foreground="White" Width="360" Height="30" VerticalContentAlignment="Center">
+            <TextBlock>
+                For more projects, 
+                <Hyperlink Foreground="Gray" NavigateUri="https://intranet.unitbv.ro/bucur_marina_bianca" RequestNavigate="Hyperlink_RequestNavigate">
+                    click here
+                </Hyperlink>
+            </TextBlock>
+        </Label>
+
+    </Grid>
+</Window>
