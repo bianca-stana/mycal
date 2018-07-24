@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Windows;
 using System.Windows.Navigation;
 
 namespace MyCal
@@ -7,7 +6,7 @@ namespace MyCal
     /// <summary>
     ///     Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow
     {
         private readonly ViewModel _model = new ViewModel();
 

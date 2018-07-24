@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using MyCal.Properties;
 using Button = System.Windows.Controls.Button;
 using ButtonBase = System.Windows.Controls.Primitives.ButtonBase;
 using Clipboard = System.Windows.Clipboard;
@@ -16,25 +17,8 @@ namespace MyCal
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        // BUG: Executing operations & saving intermediate results (solved?)
-        // OPTIONAL: Make number smaller as it gets longer
-        // OPTIONAL: Consider the order of the operations as an option in the app menu
-
-        // User settings file: C:\Users\bianc\AppData\Local\MyCal\MyCal.exe_Url_mcc11cmhbwrt4b3dj2gtc4ve4n1tg4ts\1.0.0.0
-
-
-        #region Properties
-
-        private readonly ViewModel _model = new ViewModel();
-        private double _temporaryValue;
-        private string _previousExecutedOperation = string.Empty;
-        private string _lastExecutedOperation = string.Empty;
-        private string _lastClickedButton = " ";
-
-        #endregion
-
         #region Constructors
 
         public MainWindow()
@@ -71,6 +55,23 @@ namespace MyCal
 
             base.OnStateChanged(e);
         }
+
+        #endregion
+
+        // BUG: Executing operations & saving intermediate results (solved?)
+        // OPTIONAL: Make number smaller as it gets longer
+        // OPTIONAL: Consider the order of the operations as an option in the app menu
+
+        // User settings file: C:\Users\bianc\AppData\Local\MyCal\MyCal.exe_Url_mcc11cmhbwrt4b3dj2gtc4ve4n1tg4ts\1.0.0.0
+
+
+        #region Properties
+
+        private readonly ViewModel _model = new ViewModel();
+        private double _temporaryValue;
+        private string _previousExecutedOperation = string.Empty;
+        private string _lastExecutedOperation = string.Empty;
+        private string _lastClickedButton = " ";
 
         #endregion
 
@@ -626,14 +627,14 @@ namespace MyCal
 
         private void DigitGrouping_Checked(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default["DigitGrouping"] = true;
-            Properties.Settings.Default.Save();
+            Settings.Default["DigitGrouping"] = true;
+            Settings.Default.Save();
         }
 
         private void DigitGrouping_Unchecked(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default["DigitGrouping"] = false;
-            Properties.Settings.Default.Save();
+            Settings.Default["DigitGrouping"] = false;
+            Settings.Default.Save();
         }
 
         private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)

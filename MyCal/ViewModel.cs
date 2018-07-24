@@ -8,9 +8,19 @@ namespace MyCal
 {
     internal class ViewModel : INotifyPropertyChanged
     {
+        #region Private Methods
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
         #region Properties
 
-        private bool _digitGrouping = (bool)Settings.Default["DigitGrouping"];
+        private bool _digitGrouping = (bool) Settings.Default["DigitGrouping"];
+
         public bool DigitGrouping
         {
             get => _digitGrouping;
@@ -27,6 +37,7 @@ namespace MyCal
         }
 
         private bool _writingDecimals;
+
         public bool WritingDecimals
         {
             get => _writingDecimals;
@@ -43,6 +54,7 @@ namespace MyCal
         }
 
         private int _addTrailingZeros;
+
         public int AddTrailingZeros
         {
             get => _addTrailingZeros;
@@ -59,6 +71,7 @@ namespace MyCal
         }
 
         private double _currentValue;
+
         public double CurrentValue
         {
             get => _currentValue;
@@ -82,7 +95,7 @@ namespace MyCal
                     ? CurrentValue.ToString("#,0.#", CultureInfo.CurrentCulture)
                     : CurrentValue.ToString(CultureInfo.InvariantCulture);
 
-                if (WritingDecimals && (int)CurrentValue == CurrentValue)
+                if (WritingDecimals && (int) CurrentValue == CurrentValue)
                 {
                     returnValue = returnValue + ".";
                 }
@@ -103,6 +116,7 @@ namespace MyCal
         public double Result;
 
         private string _operationsString = string.Empty;
+
         public string OperationsString
         {
             get => _operationsString;
@@ -119,6 +133,7 @@ namespace MyCal
         }
 
         private string _errorMessage;
+
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -135,12 +150,15 @@ namespace MyCal
         }
 
         private int _physicalProcessorCount;
+
         public double PhysicalProcessorCount
         {
             get
             {
                 foreach (var item in new ManagementObjectSearcher("Select * from Win32_ComputerSystem").Get())
+                {
                     _physicalProcessorCount += int.Parse(item["NumberOfProcessors"].ToString());
+                }
 
                 return _physicalProcessorCount;
             }
@@ -149,15 +167,6 @@ namespace MyCal
         public double LogicalProcessorCount => Environment.ProcessorCount;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region Private Methods
-
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
     }
